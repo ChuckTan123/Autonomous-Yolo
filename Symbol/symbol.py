@@ -43,7 +43,7 @@ def get_resnet_model(model_path, epoch):
     # extract last bn layer
     sym = sym.get_internals()['bn1_output']
     # append two layers
-    sym = mx.sym.Activation(data=sym, act_type="relu")
+    sym = mx.sym.Activation(data=sym, act_type="relu", name="relu_final")
     sym = mx.sym.Convolution(data=sym, kernel=(3, 3),
                              num_filter=5, pad=(1, 1),
                              stride=(1, 1), no_bias=True,

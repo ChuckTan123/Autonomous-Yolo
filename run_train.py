@@ -1,7 +1,7 @@
 import mxnet as mx 
-from symbol import get_resnet_model
+from Symbol.symbol import get_resnet_model
+from DATA_rec.data_ulti import get_iterator
 import numpy as np
-from data_ulti import get_iterator
 
 import logging
 import sys
@@ -19,8 +19,8 @@ if __name__ == "__main__":
 
     # get some input
     # change it to the data rec you create, and modify the batch_size
-    train_data = get_iterator(path='DATA_rec/cat.rec', data_shape=(3, 224, 224), label_width=7*7*5, batch_size=32, shuffle=True)
-    val_data = get_iterator(path='DATA_rec/cat_val.rec', data_shape=(3, 224, 224), label_width=7*7*5, batch_size=32)
+    train_data = get_iterator(path='DATA_rec/cat_small.rec', data_shape=(3, 224, 224), label_width=7*7*5, batch_size=10, shuffle=True)
+    val_data = get_iterator(path='DATA_rec/cat_small.rec', data_shape=(3, 224, 224), label_width=7*7*5, batch_size=10)
     
     # allocate gpu/cpu mem to the sym
     mod = mx.mod.Module(symbol=sym, context=mx.gpu(0))
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     mon = None #mx.mon.Monitor(10, norm_stat, pattern=".*backward*.")
 
     # save model
-    checkpoint = mx.callback.do_checkpoint('cat_detect_full_scale')
+    checkpoint = mx.callback.do_checkpoint('cat_model_full_detect')
 
     # Train
     # Try different hyperparamters to get the model converged, (batch_size,
