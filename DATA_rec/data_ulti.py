@@ -26,7 +26,7 @@ def get_YOLO_xy(bxy, grid_size=(7,7), dscale=32, sizet=224):
 
 
 # Get YOLO label
-def imgResizeBBoxTransform(img, bbox, sizet, grid_size=(7,7,5), dscale=32):
+def imgResizeBBoxTransform(img, bbox, sizet, grid_size=(7,7,9), dscale=32):
 
     himg, wimg = img.shape[:2]
     imgR = cv2.resize(img, dsize=(sizet, sizet))

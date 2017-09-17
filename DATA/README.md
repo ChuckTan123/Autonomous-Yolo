@@ -1,1 +1,0 @@
-# Unzip data (.jpg) and annotation file (.npy) here
