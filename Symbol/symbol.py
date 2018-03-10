@@ -138,9 +138,9 @@ def get_symbol_train_YoloV2_2(model_path, epoch):
     x_adjust = expit_tensor(x_all) - 0.5  # sigmoid and shift it to -0.5~0.5
     y_adjust = expit_tensor(y_all) - 0.5  # sigmoid and shift it to -0.5~0.5
     w_adjust = mx.sym.sqrt(
-        mx.sym.broadcast_mul(mx.sym.exp(w_all), mx.sym.reshape(anchors_w, shape=[1, 1, num_anchor, 1])))
+        mx.sym.broadcast_mul(mx.sym.exp(w_all), mx.sym.reshape(anchors_w, shape=[1, 1, 1, num_anchor])))
     h_adjust = mx.sym.sqrt(
-        mx.sym.broadcast_mul(mx.sym.exp(h_all), mx.sym.reshape(anchors_h, shape=[1, 1, num_anchor, 1])))
+        mx.sym.broadcast_mul(mx.sym.exp(h_all), mx.sym.reshape(anchors_h, shape=[1, 1, 1, num_anchor])))
 
 
     # todo: either do translation on GT, or do the mapping here.
